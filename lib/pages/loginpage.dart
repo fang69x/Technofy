@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:universe7/pages/homepage.dart';
+import 'package:universe7/utilities/routes.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -47,7 +49,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    print("hello");
+                    Navigator.pushNamed(context, Myrasta.HomeRoutes);
                   },
                   child: Text("LOGIN"),
                 ),
