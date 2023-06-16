@@ -5,15 +5,64 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Material(
-        child: Center(
-            child: Text(
-      "Login Page",
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: Colors.red,
+    return Material(
+      child: Column(
+        children: [
+          Image.asset(
+            "assets/images/abstract-digital-grid-black-background.jpg",
+            fit: BoxFit.contain,
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          const Text(
+            "Welcome",
+            style: TextStyle(
+              fontSize: 34,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32.0),
+            child: Column(
+              children: [
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Enter Username",
+                    labelText: " username",
+                  ),
+                ),
+                TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: "Enter password",
+                    labelText: " password",
+                  ),
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    print("hello");
+                  },
+                  child: Text("LOGIN"),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
-    )));
+      //   child: Center(
+      //       child: Text(
+      // "Login Page",
+      // style: TextStyle(
+      //   fontSize: 20,
+      //   fontWeight: FontWeight.bold,
+      //   color: Colors.red,
+    );
   }
 }
