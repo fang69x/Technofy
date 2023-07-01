@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:universe7/pages/homepage.dart';
 import 'package:universe7/utilities/routes.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+bool changebutton = false;
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -47,12 +54,44 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(
                   height: 20.0,
                 ),
-                ElevatedButton(
-                  onPressed: () {
+                InkWell(
+                  onTap: () async {
+                    setState(() {
+                      changebutton = true;
+                    });
+                    await (Future.delayed(Duration(seconds: 1)));
                     Navigator.pushNamed(context, Myrasta.HomeRoutes);
                   },
-                  child: Text("LOGIN"),
-                ),
+                  child: AnimatedContainer(
+                    duration: Duration(seconds: 1),
+                    height: 50,
+                    width: changebutton ? 50 : 100,
+                    alignment: Alignment.center,
+                    child: changebutton
+                        ? Icon(
+                            Icons.done,
+                            color: Colors.white24,
+                          )
+                        : Text(
+                            "login",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                    decoration: BoxDecoration(
+                        color: Colors.deepPurple,
+                        borderRadius:
+                            BorderRadius.circular(changebutton ? 20 : 8)),
+                  ),
+                )
+                // ElevatedButton(
+                //   onPressed: () {
+                //     Navigator.pushNamed(context, Myrasta.HomeRoutes);
+                //   },
+                //   child: Text("LOGIN"),
+                // ),
               ],
             ),
           )
