@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/drawer.dart';
+
 class HomePage extends StatelessWidget {
   final String s = "universe";
 
@@ -9,12 +11,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("hello"),
       ),
-      drawer: Drawer(),
-      body: Center(
-        child: Container(
-          child: Text("Welcome to $s 7"),
-        ),
-      ),
+      drawer: MeraDrawer(),
     );
   }
 }
