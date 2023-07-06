@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                       labelText: " username",
                     ),
                     validator: (value) {
-                      if (value != null) {
+                      if (value!.isEmpty) {
                         return "Username cannot be empty";
                       }
                     },
@@ -72,8 +72,10 @@ class _LoginPageState extends State<LoginPage> {
                         labelText: " password",
                       ),
                       validator: (value) {
-                        if (value != null) {
+                        if (value!.isEmpty) {
                           return "Password cannot be empty";
+                        } else if (value.length < 6) {
+                          return "password cannot be less than 6 digits";
                         }
                       }),
                   const SizedBox(
