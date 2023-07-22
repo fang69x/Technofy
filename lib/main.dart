@@ -4,6 +4,7 @@ import 'package:universe7/pages/loginpage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:universe7/utilities/routes.dart';
 import 'package:universe7/widgets/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 void main() {
   runApp(const Universe7());
