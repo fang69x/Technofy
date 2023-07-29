@@ -1,20 +1,28 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:universe7/utilities/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:universe7/widgets/themes.dart';
-import 'package:flutter/src/rendering/box.dart';
+
 import '../models/catalog.dart';
+import 'homewidgets/catalog_header.dart';
+import 'homewidgets/catalog_list.dart';
 
 class HomePage extends StatefulWidget {
   @override
-  State<HomePage> createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final int days = 30;
+
+  final String name = "Codepur";
+
   @override
   void initState() {
     super.initState();
@@ -36,90 +44,29 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.creamColor,
-      body: SafeArea(
-        child: Container(
-          padding: Vx.m32,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              "Catalog App".text.xl5.bold.color(MyTheme.darkBlue).make(),
-              "Trending products".text.xl2.make(),
-              if (CatalogModel.items != null && CatalogModel.items!.isNotEmpty)
-                CatalogList().expand()
-              else
-                Center(
-                  child: CircularProgressIndicator(),
-                )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CatalogList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: CatalogModel.items!.length,
-      itemBuilder: (context, index) {
-        final catalog = CatalogModel.items![index];
-        return CatalogItem(catalog: catalog);
-      },
-    );
-  }
-}
-
-class CatalogItem extends StatelessWidget {
-  final Item catalog;
-  const CatalogItem({
-    Key? key,
-    required this.catalog,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return VxBox(
-      child: Row(
-        children: [
-          Image.network(
-            catalog.image,
-            height: 100, // Set an appropriate height for the image
-            width: 100, // Set an appropriate width for the image
-          ).box.p20.color(MyTheme.creamColor).make().p16(),
-          Expanded(
+        backgroundColor: MyTheme.creamColor,
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.pushNamed(context, Myrasta.cartRoute);
+            },
+            backgroundColor: MyTheme.darkBlue,
+            splashColor: Colors.red,
+            child: Icon(CupertinoIcons.cart)),
+        body: SafeArea(
+          child: Container(
+            padding: Vx.m32,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                catalog.name.text.lg.color(MyTheme.darkBlue).xl.make(),
-                catalog.desc.text.textStyle(context.captionStyle).make(),
-                ButtonBar(
-                  alignment: MainAxisAlignment.spaceBetween,
-                  buttonPadding: Vx.m16,
-                  children: [
-                    "\$${catalog.price}".text.bold.xl.make(),
-                    ElevatedButton(
-                        onPressed: () {},
-                        // button ka colour change karne ke liye
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(MyTheme.darkBlue),
-                          shape: MaterialStateProperty.all(
-                            StadiumBorder(),
-                          ),
-                        ),
-                        child: "Buy".text.make())
-                  ],
-                )
-
-                // Add other widgets as needed
+                CatalogHeader(),
+                if (CatalogModel.items != null &&
+                    CatalogModel.items!.isNotEmpty)
+                  CatalogList().py16().expand()
+                else
+                  CircularProgressIndicator().centered().expand(),
               ],
             ),
           ),
-        ],
-      ),
-    ).white.roundedSM.square(150).make().py12();
+        ));
   }
 }
