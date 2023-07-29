@@ -1,32 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:universe7/pages/cartpage.dart';
-import 'package:universe7/pages/homepage.dart';
-import 'package:universe7/pages/loginpage.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:universe7/utilities/routes.dart';
-import 'package:universe7/widgets/themes.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:provider/provider.dart';
+import 'models/themeprovider.dart';
+import 'pages/cartpage.dart';
+import 'pages/homepage.dart';
+import 'pages/loginpage.dart';
+
+import 'utilities/routes.dart';
+import 'widgets/themes.dart';
 
 void main() {
-  runApp(const Universe7());
+  runApp(Universe7());
 }
 
 class Universe7 extends StatelessWidget {
-  const Universe7({super.key});
+  const Universe7({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        themeMode: ThemeMode.light,
-        theme: MyTheme.lightTheme(context),
-        debugShowCheckedModeBanner: false,
-        initialRoute: Myrasta.HomeRoutes,
-        routes: {
-          "/": (context) =>
-              const LoginPage(), // "/" ye yani first page jo ayega
-          Myrasta.HomeRoutes: (context) => HomePage(),
-          Myrasta.LoginRoutes: (context) => LoginPage(),
-          Myrasta.cartRoute: (context) => CartPage(),
-        });
+    return ChangeNotifierProvider(
+      create: (_) => ThemeProvider(), // Provide the ThemeProvider here.
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, _) {
+          return MaterialApp(
+            themeMode:
+                themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+            theme: MyTheme.lightTheme(context),
+            darkTheme: MyTheme.darkTheme(context),
+            debugShowCheckedModeBanner: false,
+            initialRoute: Myrasta.HomeRoutes,
+            routes: {
+              "/": (context) =>
+                  const LoginPage(), // "/" ye yani first page jo ayega
+              Myrasta.HomeRoutes: (context) => HomePage(),
+              Myrasta.LoginRoutes: (context) => LoginPage(),
+              Myrasta.cartRoute: (context) => CartPage(),
+            },
+          );
+        },
+      ),
+    );
   }
 }

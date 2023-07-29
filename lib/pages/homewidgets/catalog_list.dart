@@ -44,40 +44,41 @@ class CatalogItem extends StatelessWidget {
               catalog.image,
               height: 100, // Set an appropriate height for the image
               width: 100, // Set an appropriate width for the image
-            ).box.p20.color(MyTheme.creamColor).make().p16(),
+            ).box.p20.color(context.canvasColor).make().p16(),
           ),
           Expanded(
-            child: Column(
-              children: [
-                catalog.name.text.lg.color(MyTheme.darkBlue).xl.make(),
-                catalog.desc.text.textStyle(context.captionStyle).make(),
-                ButtonBar(
-                  alignment: MainAxisAlignment.spaceBetween,
-                  buttonPadding: Vx.mH4,
-                  children: [
-                    "\$${catalog.price}".text.bold.xl.make(),
-                    Expanded(
-                        child: ElevatedButton(
-                            onPressed: () {},
-                            // button ka colour change karne ke liye
+              child: Column(
+            children: [
+              catalog.name.text.lg.color(MyTheme.darkBlue).xl.make(),
+              catalog.desc.text.textStyle(context.captionStyle).make(),
+              ButtonBar(
+                alignment: MainAxisAlignment.spaceBetween,
+                buttonPadding: Vx.mH4,
+                children: [
+                  "\$${catalog.price}".text.bold.xl.make(),
+                  ElevatedButton(
+                      onPressed: () {},
+                      // button ka colour change karne ke liye
 
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(MyTheme.darkBlue),
-                              shape: MaterialStateProperty.all(
-                                StadiumBorder(),
-                              ),
-                            ),
-                            child: "Add to cart".text.make()))
-                  ],
-                )
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                          Theme.of(context)
+                              .floatingActionButtonTheme
+                              .backgroundColor,
+                        ),
+                        shape: MaterialStateProperty.all(
+                          StadiumBorder(),
+                        ),
+                      ),
+                      child: "Add to cart".text.make()),
+                ],
+              )
 
-                // Add other widgets as needed
-              ],
-            ),
-          ),
+              // Add other widgets as needed
+            ],
+          ).pOnly(right: 8.0)),
         ],
       ),
-    ).white.roundedSM.square(150).make().py12();
+    ).color(context.cardColor).roundedSM.square(150).make().py12();
   }
 }

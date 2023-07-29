@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:universe7/pages/homepage.dart';
 import 'package:universe7/utilities/routes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -28,6 +29,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: context.canvasColor,
+
       child: Form(
         key: _formkey,
         child: Column(
@@ -84,6 +87,9 @@ class _LoginPageState extends State<LoginPage> {
                   InkWell(
                     onTap: () => moveToHome(context),
                     child: AnimatedContainer(
+                      color: Theme.of(context)
+                          .floatingActionButtonTheme
+                          .backgroundColor,
                       duration: Duration(seconds: 1),
                       height: 50,
                       width: changebutton ? 50 : 100,

@@ -14,9 +14,9 @@ class HomeDetailPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
         ),
-        backgroundColor: MyTheme.creamColor,
+        backgroundColor: context.canvasColor,
         bottomNavigationBar: Container(
-          color: Colors.white,
+          color: context.cardColor,
           child: ButtonBar(
             alignment: MainAxisAlignment.spaceBetween,
             buttonPadding: Vx.m16,
@@ -26,8 +26,11 @@ class HomeDetailPage extends StatelessWidget {
                       onPressed: () {},
                       // button ka colour change karne ke liye
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(MyTheme.darkBlue),
+                        backgroundColor: MaterialStateProperty.all(
+                          Theme.of(context)
+                              .floatingActionButtonTheme
+                              .backgroundColor,
+                        ),
                         shape: MaterialStateProperty.all(
                           StadiumBorder(),
                         ),
@@ -51,12 +54,12 @@ class HomeDetailPage extends StatelessWidget {
                   arcType: VxArcType.CONVEY,
                   edge: VxEdge.TOP,
                   child: Container(
-                      color: Colors.white,
+                      color: context.cardColor,
                       width: context.screenWidth,
                       child: Column(
                         children: [
                           catalog.name.text.lg
-                              .color(MyTheme.darkBlue)
+                              .color(context.accentColor)
                               .xl4
                               .bold
                               .make(),
