@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
             Theme.of(context).floatingActionButtonTheme.backgroundColor,
         child: Icon(
           Icons.shopping_cart,
-          color: Colors.white,
+          color: context.primaryColor,
         ),
       ),
     );

@@ -12,7 +12,7 @@ class CatalogList extends StatelessWidget {
       shrinkWrap: true,
       itemCount: CatalogModel.items!.length,
       itemBuilder: (context, index) {
-        final catalog = CatalogModel.items![index];
+        final catalog = CatalogModel.getByPosition(index);
         return InkWell(
             onTap: () => Navigator.push(
                 context,
@@ -49,7 +49,7 @@ class CatalogItem extends StatelessWidget {
           Expanded(
               child: Column(
             children: [
-              catalog.name.text.lg.color(MyTheme.darkBlue).xl.make(),
+              catalog.name.text.lg.color(context.accentColor).xl.bold.make(),
               catalog.desc.text.textStyle(context.captionStyle).make(),
               ButtonBar(
                 alignment: MainAxisAlignment.spaceBetween,
