@@ -18,9 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final int days = 30;
-  final String name = "Codepur";
-
   @override
   void initState() {
     super.initState();
@@ -42,6 +39,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // dark mode toggle button
       appBar: AppBar(
         title: Text("Home Page"),
         actions: [
@@ -80,7 +78,7 @@ class _HomePageState extends State<HomePage> {
             Theme.of(context).floatingActionButtonTheme.backgroundColor,
         child: Icon(
           Icons.shopping_cart,
-          color: Colors.blue,
+          color: Colors.white,
         ),
       ),
     );

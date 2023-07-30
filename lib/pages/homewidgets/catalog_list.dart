@@ -44,7 +44,7 @@ class CatalogItem extends StatelessWidget {
               catalog.image,
               height: 100, // Set an appropriate height for the image
               width: 100, // Set an appropriate width for the image
-            ).box.p20.color(context.canvasColor).make().p16(),
+            ).box.p12.color(context.canvasColor).make().p12(),
           ),
           Expanded(
               child: Column(

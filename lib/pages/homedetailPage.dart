@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:universe7/widgets/themes.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
