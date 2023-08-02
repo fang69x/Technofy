@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universe7/models/cart.dart';
 import 'package:universe7/pages/homedetailPage.dart';
@@ -57,7 +58,7 @@ class CatalogItem extends StatelessWidget {
                 buttonPadding: Vx.mH4,
                 children: [
                   "\$${catalog.price}".text.bold.xl.make(),
-                  _AddToCart(
+                  AddToCart(
                     catalog: catalog,
                     key: UniqueKey(),
                   )
@@ -73,9 +74,9 @@ class CatalogItem extends StatelessWidget {
   }
 }
 
-class _AddToCart extends StatefulWidget {
+class AddToCart extends StatefulWidget {
   final Item catalog;
-  const _AddToCart({
+  const AddToCart({
     required Key key,
     required this.catalog,
   }) : super(key: key);
@@ -84,29 +85,32 @@ class _AddToCart extends StatefulWidget {
   __AddToCartState createState() => __AddToCartState();
 }
 
-class __AddToCartState extends State<_AddToCart> {
-  bool isAdded = false;
+class __AddToCartState extends State<AddToCart> {
+  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
+    bool isInCart = _cart.items.contains(widget.catalog) ?? false;
     return ElevatedButton(
-        onPressed: () {
-          isAdded = isAdded.toggle();
-          final _catalog = CatalogModel();
-          final _cart = CartModel();
-          _cart.catalog = _catalog;
+      onPressed: () {
+        isInCart = isInCart.toggle();
+        if (isInCart) {
+          final catalog = CatalogModel();
+          _cart.catalog = catalog;
           _cart.add(widget.catalog);
           setState(() {});
-        },
-        // button ka colour change karne ke liye
+        }
+      },
+      // button ka colour change karne ke liye
 
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
-            Theme.of(context).floatingActionButtonTheme.backgroundColor,
-          ),
-          shape: MaterialStateProperty.all(
-            StadiumBorder(),
-          ),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          Theme.of(context).floatingActionButtonTheme.backgroundColor,
         ),
-        child: isAdded ? Icon(Icons.done) : "Add to cart".text.make());
+        shape: MaterialStateProperty.all(
+          StadiumBorder(),
+        ),
+      ),
+      child: isInCart ? Icon(Icons.done) : Icon(CupertinoIcons.cart_badge_plus),
+    );
   }
 }
