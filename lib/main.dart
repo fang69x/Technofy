@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:universe7/core/store.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'models/themeprovider.dart';
 import 'pages/cartpage.dart';
 import 'pages/homepage.dart';
@@ -9,7 +11,7 @@ import 'utilities/routes.dart';
 import 'widgets/themes.dart';
 
 void main() {
-  runApp(Universe7());
+  runApp(VxState(store: MyStore(), child: Universe7()));
 }
 
 class Universe7 extends StatelessWidget {

@@ -1,9 +1,6 @@
 import 'package:universe7/models/catalog.dart';
 
 class CartModel {
-  static final cartModel = CartModel.internal();
-  CartModel.internal();
-  factory CartModel() => cartModel;
   CatalogModel? catalog;
   final List<int> itemIds = [];
 
