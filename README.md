@@ -1,4 +1,5 @@
-# universe7
+<<<<<<< HEAD
+# Technofy
 
 A new Flutter project.
 
@@ -14,3 +15,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# Technofy
+>>>>>>> b426386e8b03c2a597075cd6a5bdebdb7b041ea8
