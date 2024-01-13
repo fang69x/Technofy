@@ -6,16 +6,15 @@ import 'models/themeprovider.dart';
 import 'pages/cartpage.dart';
 import 'pages/homepage.dart';
 import 'pages/loginpage.dart';
-
 import 'utilities/routes.dart';
 import 'widgets/themes.dart';
 
 void main() {
-  runApp(VxState(store: MyStore(), child: Universe7()));
+  runApp(VxState(store: MyStore(), child: Technofy()));
 }
 
-class Universe7 extends StatelessWidget {
-  const Universe7({Key? key}) : super(key: key);
+class Technofy extends StatelessWidget {
+  const Technofy({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
