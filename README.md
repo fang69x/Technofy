@@ -77,3 +77,9 @@ The `Item` class represents an individual catalog item, encapsulating attributes
 
 ###Screenshots
 
+![Screenshot_1705527299](https://github.com/fang69x/Technofy/assets/109065342/d234a5a7-5229-46da-9c52-e4c637e1a284)
+![Screenshot_1705527450](https://github.com/fang69x/Technofy/assets/109065342/0202fa1f-8091-49c7-8d0b-9743631c9e70)
+![Screenshot_1705527332](https://github.com/fang69x/Technofy/assets/109065342/6694d388-9c35-461d-9fe4-162686a17d28)
+![Screenshot_1705527336](https://github.com/fang69x/Technofy/assets/109065342/fe5279f4-c120-4992-84ff-9a4dcd34b975)
+![Screenshot_1705527461](https://github.com/fang69x/Technofy/assets/109065342/6805cfd6-8abc-44c2-bcd9-83b9567bb834)
+![Screenshot_1705527465](https://github.com/fang69x/Technofy/assets/109065342/a2956c4d-b0da-4f60-be06-5a907653f659)
