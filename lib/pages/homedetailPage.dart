@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:universe7/pages/homewidgets/add_to_cart.dart';
+import 'package:Technofy/pages/homewidgets/add_to_cart.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 

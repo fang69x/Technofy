@@ -1,4 +1,4 @@
-package com.example.universe7
+package com.example.Technofy
 
 import io.flutter.embedding.android.FlutterActivity
 

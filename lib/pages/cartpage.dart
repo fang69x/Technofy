@@ -1,18 +1,19 @@
+// ignore_for_file: unused_import
+
+import 'package:Technofy/core/store.dart';
 import 'package:flutter/material.dart';
-import 'package:universe7/models/cart.dart';
-import 'package:universe7/widgets/themes.dart';
+import 'package:Technofy/models/cart.dart';
+import 'package:Technofy/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.canvasColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: "Cart".text.bold.xl2.make(),
+        title: "Cart".text.make(),
       ),
       body: Column(
         children: [
@@ -26,15 +27,22 @@ class CartPage extends StatelessWidget {
 }
 
 class _CartTotal extends StatelessWidget {
-  const _CartTotal({super.key});
-
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        "\$${_cart.totalPrice}".text.xl5.color(context.accentColor).make(),
+        VxBuilder(
+          mutations: {RemoveMutation},
+          builder: (context, store, status) {
+            return "\$${_cart.totalPrice}"
+                .text
+                .xl5
+                .color(context.theme.highlightColor)
+                .make();
+          },
+        ),
         30.widthBox,
         ElevatedButton(
             onPressed: () {
@@ -60,24 +68,35 @@ class _CartTotal extends StatelessWidget {
 }
 
 class _CartList extends StatelessWidget {
-  final _cart = CartModel();
+  final CartModel _cart = (VxState.store as MyStore).cart;
+
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [RemoveMutation]);
     return _cart.items.isEmpty
-        ? "Nothing to show".text.xl.bold.makeCentered()
+        ? "Nothing to show"
+            .text
+            .xl3
+            .color(context.theme.highlightColor)
+            .makeCentered()
         : ListView.builder(
             itemCount: _cart.items.length,
-            itemBuilder: (context, index) => ListTile(
-              leading: Icon(Icons.done),
-              trailing: IconButton(
-                icon: Icon(Icons.remove_circle_outline),
-                onPressed: () {
-                  _cart.remove(_cart.items[index]);
-                  // setState(() {});
-                },
-              ),
-              title: _cart.items[index].name.text.make(),
-            ),
+            itemBuilder: (context, index) {
+              if (_cart.items.length > index) {
+                // Check if index is within the valid range
+                return ListTile(
+                  leading: Icon(Icons.done),
+                  trailing: IconButton(
+                    icon: Icon(Icons.remove_circle_outline),
+                    onPressed: () => RemoveMutation(_cart.items[index]),
+                  ),
+                  title: _cart.items[index].name.text.make(),
+                );
+              } else {
+                return SizedBox
+                    .shrink(); // Return an empty widget if index is out of bounds
+              }
+            },
           );
   }
 }

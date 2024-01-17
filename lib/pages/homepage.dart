@@ -3,12 +3,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:universe7/utilities/routes.dart';
+import 'package:Technofy/utilities/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../models/catalog.dart';
-import '../models/themeprovider.dart';
 import 'homewidgets/catalog_header.dart';
 import 'homewidgets/catalog_list.dart';
 
@@ -39,23 +37,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // dark mode toggle button
+      backgroundColor: Theme.of(context).canvasColor,
       appBar: AppBar(
         title: Text("Home Page"),
-        actions: [
-          Consumer<ThemeProvider>(
-            builder: (context, themeProvider, _) {
-              return IconButton(
-                icon: Icon(
-                  themeProvider.isDarkMode
-                      ? Icons.brightness_high
-                      : Icons.brightness_4,
-                ),
-                onPressed: () => themeProvider.toggleTheme(),
-              );
-            },
-          ),
-        ],
       ),
       body: SafeArea(
         child: Container(
@@ -74,8 +58,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, Myrasta.cartRoute),
-        backgroundColor:
-            Theme.of(context).floatingActionButtonTheme.backgroundColor,
+        backgroundColor: context.theme.highlightColor,
         child: Icon(
           Icons.shopping_cart,
           color: context.primaryColor,

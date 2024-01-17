@@ -1,3 +1,4 @@
+import 'package:Technofy/core/store.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -5,7 +6,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../models/cart.dart';
 import '../../models/catalog.dart';
 
-class AddToCart extends StatefulWidget {
+class AddToCart extends StatelessWidget {
   final Item catalog;
   AddToCart({
     required Key key,
@@ -13,30 +14,16 @@ class AddToCart extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  __AddToCartState createState() => __AddToCartState();
-}
-
-class __AddToCartState extends State<AddToCart> {
-  final _cart = CartModel();
-  bool isInCart = false; // Move the isInCart variable here to retain its state
-  void initState() {
-    super.initState();
-    // Check if the item is already in the cart when the widget initializes
-    isInCart = _cart.items.contains(widget.catalog);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [AddMutation, RemoveMutation]);
+    final CartModel _cart = (VxState.store as MyStore).cart;
+    bool isInCart = _cart.items.contains(catalog) ?? false;
     return ElevatedButton(
       onPressed: () {
         if (!isInCart) {
-          setState(() {
-            isInCart = true; // Update the state using setState
-            final catalog = CatalogModel();
-
-            _cart.catalog = catalog;
-            _cart.add(widget.catalog);
-          });
+          isInCart = isInCart.toggle();
+          AddMutation(catalog);
+          // setState(() {});
         }
       },
       // button ka colour change karne ke liye

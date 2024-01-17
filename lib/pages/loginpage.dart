@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:universe7/pages/homepage.dart';
-import 'package:universe7/utilities/routes.dart';
+import 'package:Technofy/utilities/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
@@ -66,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                       if (value!.isEmpty) {
                         return "Username cannot be empty";
                       }
+                      return null;
                     },
                   ),
                   TextFormField(
@@ -80,6 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                         } else if (value.length < 6) {
                           return "password cannot be less than 6 digits";
                         }
+                        return null;
                       }),
                   const SizedBox(
                     height: 20.0,

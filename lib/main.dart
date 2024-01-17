@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:universe7/core/store.dart';
+import 'package:Technofy/core/store.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'models/themeprovider.dart';
 import 'pages/cartpage.dart';
@@ -23,8 +23,6 @@ class Technofy extends StatelessWidget {
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, _) {
           return MaterialApp(
-            themeMode:
-                themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
             theme: MyTheme.lightTheme(context),
             darkTheme: MyTheme.darkTheme(context),
             debugShowCheckedModeBanner: false,

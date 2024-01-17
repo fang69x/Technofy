@@ -4,19 +4,18 @@ import 'package:velocity_x/velocity_x.dart';
 
 class MyTheme {
   static ThemeData lightTheme(BuildContext context) => ThemeData(
+        primaryColor: Colors.white,
         brightness: Brightness.light,
         fontFamily: GoogleFonts.poppins().fontFamily,
         cardColor: Colors.white,
         canvasColor: creamColor,
-        buttonTheme: ButtonThemeData(
-          buttonColor: darkBlue,
-        ),
+        highlightColor: Color.fromARGB(255, 36, 33, 33),
         appBarTheme: AppBarTheme(
           color: Colors.white,
           elevation: 0.0,
           iconTheme: IconThemeData(color: Colors.black),
-          toolbarTextStyle: Theme.of(context).textTheme.bodyText2,
-          titleTextStyle: Theme.of(context).textTheme.headline6,
+          toolbarTextStyle: Theme.of(context).textTheme.bodyMedium,
+          titleTextStyle: Theme.of(context).textTheme.titleLarge,
         ),
         colorScheme: ColorScheme.fromSwatch()
             .copyWith(secondary: Colors.white)
@@ -26,37 +25,36 @@ class MyTheme {
   static ThemeData darkTheme(BuildContext context) => ThemeData(
         brightness: Brightness.dark,
         fontFamily: GoogleFonts.poppins().fontFamily,
-        cardColor: Colors.black,
-        canvasColor: darkCreamColor,
-        buttonTheme: ButtonThemeData(
-          buttonColor: lightBluishColor,
-        ),
+        cardColor: Color.fromARGB(145, 151, 175, 246),
+        canvasColor: Color(0xFF191D29),
+        highlightColor: Color.fromARGB(255, 170, 189, 246),
+        primaryColor: Colors.white,
         appBarTheme: AppBarTheme(
           color: Colors.black,
           elevation: 0.0,
-          iconTheme: IconThemeData(color: Colors.white),
+          iconTheme: IconThemeData(color: Color.fromARGB(255, 109, 103, 146)),
           toolbarTextStyle: Theme.of(context)
               .textTheme
               .copyWith(
-                headline6:
-                    context.textTheme.headline6?.copyWith(color: Colors.white),
+                titleLarge:
+                    context.textTheme.titleLarge?.copyWith(color: Colors.white),
               )
-              .bodyText2,
+              .bodyMedium,
           titleTextStyle: Theme.of(context)
               .textTheme
               .copyWith(
-                headline6:
-                    context.textTheme.headline6?.copyWith(color: Colors.white),
+                titleLarge:
+                    context.textTheme.titleLarge?.copyWith(color: Colors.white),
               )
-              .headline6,
+              .titleLarge,
         ),
         colorScheme: ColorScheme.fromSwatch()
             .copyWith(secondary: darkBlue, brightness: Brightness.dark)
-            .copyWith(secondary: Colors.white),
+            .copyWith(secondary: Colors.black),
       );
 
   static Color creamColor = Color(0xfff5f5f5);
-  static Color darkBlue = Color.fromARGB(255, 34, 32, 46);
+  static Color darkBlue = Color(0xFF403b58);
   static Color darkCreamColor = Vx.gray900;
-  static Color lightBluishColor = Vx.indigo500;
+  static Color lightBluishColor = Color.fromARGB(255, 126, 21, 230);
 }
