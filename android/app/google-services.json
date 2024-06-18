@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "545349136515",
+    "project_id": "technofy-b63d0",
+    "storage_bucket": "technofy-b63d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545349136515:android:2cdd7b94693a9b8f55abb6",
+        "android_client_info": {
+          "package_name": "com.example.Technofy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4MvV4coQVQLw4eQJaaB1awI0aFplS_sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

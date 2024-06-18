@@ -8,9 +8,13 @@ import 'pages/homepage.dart';
 import 'pages/loginpage.dart';
 import 'utilities/routes.dart';
 import 'widgets/themes.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(VxState(store: MyStore(), child: Technofy()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(VxState(store: MyStore(), child: const Technofy()));
 }
 
 class Technofy extends StatelessWidget {
@@ -26,12 +30,12 @@ class Technofy extends StatelessWidget {
             theme: MyTheme.lightTheme(context),
             darkTheme: MyTheme.darkTheme(context),
             debugShowCheckedModeBanner: false,
-            initialRoute: Myrasta.HomeRoutes,
+            initialRoute: Myrasta.LoginRoutes,
             routes: {
               "/": (context) =>
-                  const LoginPage(), // "/" ye yani first page jo ayega
+                   LoginPage(onTap: () {  },), // "/" ye yani first page jo ayega
               Myrasta.HomeRoutes: (context) => HomePage(),
-              Myrasta.LoginRoutes: (context) => LoginPage(),
+              Myrasta.LoginRoutes: (context) => LoginPage(onTap: () {  },),
               Myrasta.cartRoute: (context) => CartPage(),
             },
           );
