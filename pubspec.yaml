@@ -38,7 +38,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^5.0.0
   rename_app: ^1.3.1
-
+  firebase_core: ^2.27.0
+  firebase_auth: ^4.17.8
+  google_sign_in: ^6.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -70,6 +72,7 @@ flutter:
   
    - assets/images/
    - assets/files/
+   - lib/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
